@@ -21,6 +21,6 @@ Output
 ```
 Consume RequestB { Id: RequestId { Id: 1 } }
  >>> Request B Handled - RequestB { Id: RequestId { Id: 1 } }
-Consume RequestB { Id: RequestId { Id: 2 } }
- >>> Request B Handled - RequestB { Id: RequestId { Id: 2 } }
+Consume RequestA { Id: RequestId { Id: 2 } }
+ >>> Request A Handled - RequestA { Id: RequestId { Id: 2 } }
 ```
