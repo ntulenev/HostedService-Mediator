@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30523.141
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HostedServiceMediatRExample", "HostedServiceMediatRExample\HostedServiceMediatRExample.csproj", "{625A7EC7-8E5E-4D55-9B5E-B0371C737A94}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|x64 = Debug|x64
+		Release|x64 = Release|x64
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{625A7EC7-8E5E-4D55-9B5E-B0371C737A94}.Debug|x64.ActiveCfg = Debug|x64
+		{625A7EC7-8E5E-4D55-9B5E-B0371C737A94}.Debug|x64.Build.0 = Debug|x64
+		{625A7EC7-8E5E-4D55-9B5E-B0371C737A94}.Release|x64.ActiveCfg = Release|x64
+		{625A7EC7-8E5E-4D55-9B5E-B0371C737A94}.Release|x64.Build.0 = Release|x64
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {4D08D626-AC13-4DBF-9A29-10F4624B43CD}
+	EndGlobalSection
+EndGlobal
