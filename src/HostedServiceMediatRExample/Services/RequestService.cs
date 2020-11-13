@@ -28,7 +28,7 @@ namespace HostedServiceMediatRExample.Services
 
             _hostApplicationLifetime = hostApplicationLifetime ?? throw new ArgumentNullException(nameof(hostApplicationLifetime));
 
-            _scopeFactory = scopeFactory;
+            _scopeFactory = scopeFactory ?? throw new ArgumentNullException(nameof(scopeFactory));
         }
 
         public Task StartAsync(CancellationToken cancellationToken)
@@ -38,7 +38,7 @@ namespace HostedServiceMediatRExample.Services
             {
                 if (t.IsFaulted)
                 {
-                    _logger?.LogError("Entity updating encountered error", t.Exception);
+                    _logger?.LogError("Encountered error", t.Exception);
 
                     _logger?.LogInformation("Stopping the application");
 
