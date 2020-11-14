@@ -1,7 +1,7 @@
 # HostedService + Mediator example
 Example how to use [MediatR](https://github.com/jbogard/MediatR) from ASP.NET Core HostedService
 
-Using Mediator in HostedService to split consumed data between to handlers
+Using Mediator in HostedService to split consumed data between handlers. 
 
 ```C#
 await foreach (var request in _consumer.GetDataAsync(ct))
