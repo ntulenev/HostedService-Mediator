@@ -20,6 +20,7 @@ namespace HostedServiceMediatRExample
 
             services.AddHostedService<RequestService>();
 
+            // Register mediator
             services.AddMediatR(typeof(Startup));
 
             services.AddHealthChecks();

@@ -70,6 +70,7 @@ namespace HostedServiceMediatRExample.Services
             {
                 await foreach (var request in _consumer.GetDataAsync().WithCancellation(ct))
                 {
+                    // Using scope to have Mediator and handlers lifetime only per scope.
                     using var scope = _scopeFactory.CreateScope();
 
                     var mediator = scope.ServiceProvider.GetService<IMediator>();

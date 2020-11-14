@@ -10,6 +10,9 @@ using Microsoft.Extensions.Logging;
 
 namespace HostedServiceMediatRExample.Handlers
 {
+    /// <summary>
+    /// Handler for <see cref="RequestA"/>, registers automatically with MediatR
+    /// </summary>
     public class RequestAHandler : INotificationHandler<RequestA>, IDisposable
     {
         public RequestAHandler(ILogger<RequestAHandler>? logger)
