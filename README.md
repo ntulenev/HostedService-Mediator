@@ -2,6 +2,7 @@
 Example how to use [MediatR](https://github.com/jbogard/MediatR) from ASP.NET Core HostedService
 
 Using Mediator in HostedService to split consumed data between handlers. 
+Scope factory is used to set lifetime for handlers only per item processing scope. (Default behaviour is lifetime per hosted service lifetime).
 
 ```C#
 await foreach (var request in _consumer.GetDataAsync(ct))
@@ -21,6 +22,11 @@ Output
 ```
 Consume RequestB { Id: RequestId { Id: 1 } }
  >>> Request B Handled - RequestB { Id: RequestId { Id: 1 } }
-Consume RequestA { Id: RequestId { Id: 2 } }
- >>> Request A Handled - RequestA { Id: RequestId { Id: 2 } }
+ Dispose handler B
+Consume RequestB { Id: RequestId { Id: 2 } }
+ >>> Request B Handled - RequestB { Id: RequestId { Id: 2 } }
+ Dispose handler B
+Consume RequestA { Id: RequestId { Id: 3 } }
+ >>> Request A Handled - RequestA { Id: RequestId { Id: 3 } }
+ Dispose handler A
 ```
