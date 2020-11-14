@@ -30,3 +30,18 @@ Consume RequestA { Id: RequestId { Id: 3 } }
  >>> Request A Handled - RequestA { Id: RequestId { Id: 3 } }
  Dispose handler A
 ```
+
+With classic approach when we inject IMediator in constuctor we will dispose all handlers only when app will be stopped
+
+```
+The service is stopped
+ Dispose handler A
+ Dispose handler A
+ Dispose handler B
+ Dispose handler A
+ Dispose handler B
+ Dispose handler B
+ Dispose handler B
+ Dispose handler B
+ Dispose handler A
+```
