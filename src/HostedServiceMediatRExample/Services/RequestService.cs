@@ -29,11 +29,12 @@ namespace HostedServiceMediatRExample.Services
             _hostApplicationLifetime = hostApplicationLifetime ?? throw new ArgumentNullException(nameof(hostApplicationLifetime));
 
             _scopeFactory = scopeFactory ?? throw new ArgumentNullException(nameof(scopeFactory));
+
         }
 
         public Task StartAsync(CancellationToken cancellationToken)
         {
-            workTask = ProcessDataAsync(cancellationToken);
+            workTask = ProcessDataAsync(_hostApplicationLifetime.ApplicationStopping);
             _ = workTask.ContinueWith(t =>
             {
                 if (t.IsFaulted)
@@ -67,7 +68,7 @@ namespace HostedServiceMediatRExample.Services
         {
             try
             {
-                await foreach (var request in _consumer.GetDataAsync(ct))
+                await foreach (var request in _consumer.GetDataAsync().WithCancellation(ct))
                 {
                     using var scope = _scopeFactory.CreateScope();
 
