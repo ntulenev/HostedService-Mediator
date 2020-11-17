@@ -24,5 +24,15 @@ namespace HostedServiceMediatRExample.Models
 
         public bool Equals(RequestId other)
             => Id == other.Id;
+
+        public static bool operator ==(RequestId left, RequestId right)
+        {
+            return left.Equals(right);
+        }
+
+        public static bool operator !=(RequestId left, RequestId right)
+        {
+            return !(left == right);
+        }
     }
 }
