@@ -39,13 +39,13 @@ namespace HostedServiceMediatRExample.Services
             {
                 if (t.IsFaulted)
                 {
-                    _logger?.LogError("Encountered error", t.Exception);
+                    _logger?.LogError("Encountered error.", t.Exception);
 
-                    _logger?.LogInformation("Stopping the application");
+                    _logger?.LogInformation("Stopping the application.");
 
                     _hostApplicationLifetime.StopApplication();
                 }
-            });
+            }, cancellationToken);
 
             return Task.CompletedTask;
         }
@@ -61,23 +61,27 @@ namespace HostedServiceMediatRExample.Services
             {
             }
 
-            _logger?.LogInformation("The service is stopped");
+            _logger?.LogInformation("The service is stopped.");
         }
 
         private async Task ProcessDataAsync(CancellationToken ct)
         {
             try
             {
-                await foreach (var request in _consumer.GetDataAsync().WithCancellation(ct))
+                await foreach (var request in _consumer.GetDataAsync().WithCancellation(ct).ConfigureAwait(false))
                 {
+                    Debug.Assert(request != null);
+
                     // Using scope to have Mediator and handlers lifetime only per scope.
                     using var scope = _scopeFactory.CreateScope();
 
                     var mediator = scope.ServiceProvider.GetService<IMediator>();
 
-                    _logger?.LogInformation("Consume {@request}", request);
+                    Debug.Assert(mediator != null);
 
-                    await mediator.Publish(request);
+                    _logger?.LogInformation("Consume {@request}.", request);
+
+                    await mediator.Publish(request, ct).ConfigureAwait(false);
                 }
             }
             catch (Exception ex)

@@ -2,7 +2,7 @@
 
 namespace HostedServiceMediatRExample.Models
 {
-    public abstract class Request : INotification
+    public abstract record Request : INotification
     {
         public RequestId Id { get; }
 

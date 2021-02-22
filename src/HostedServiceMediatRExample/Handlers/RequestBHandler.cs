@@ -23,7 +23,7 @@ namespace HostedServiceMediatRExample.Handlers
         public async Task Handle(RequestB notification, CancellationToken cancellationToken)
         {
             ThrowIfDisposed();
-            await Task.Delay(100);
+            await Task.Delay(100, cancellationToken).ConfigureAwait(false);
             _logger?.LogInformation(">>> Request B Handled - {@notification}", notification);
 
         }
@@ -46,6 +46,6 @@ namespace HostedServiceMediatRExample.Handlers
 
         private bool _isDisposed;
 
-        private ILogger<RequestAHandler>? _logger;
+        private readonly ILogger<RequestAHandler>? _logger;
     }
 }

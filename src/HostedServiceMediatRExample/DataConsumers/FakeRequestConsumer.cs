@@ -16,7 +16,7 @@ namespace HostedServiceMediatRExample.DataConsumers
             long id = 0;
             while (!ct.IsCancellationRequested)
             {
-                await Task.Delay(1_000);
+                await Task.Delay(1_000, ct).ConfigureAwait(false);
 
                 var enumItem = (RequestType)rnd.Next(0, 2);
                 if (!Enum.IsDefined(typeof(RequestType), enumItem))

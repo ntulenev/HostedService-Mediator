@@ -1,6 +1,6 @@
 ﻿namespace HostedServiceMediatRExample.Models
 {
-    public class RequestB : Request
+    public record RequestB : Request
     {
         public RequestB(RequestId id) : base(id)
         {
