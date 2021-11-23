@@ -1,23 +1,14 @@
-using Microsoft.AspNetCore.Hosting;
-using Microsoft.Extensions.Hosting;
-
 using Serilog;
 
-namespace HostedServiceMediatRExample
-{
-    public class Program
-    {
-        public static void Main(string[] args)
-        {
-            CreateHostBuilder(args).Build().Run();
-        }
+using HostedServiceMediatRExample;
 
-        public static IHostBuilder CreateHostBuilder(string[] args) =>
-            Host.CreateDefaultBuilder(args)
+var builder = Host.CreateDefaultBuilder(args)
                 .ConfigureWebHostDefaults(webBuilder =>
                 {
                     webBuilder.UseStartup<Startup>().UseSerilog(
-                        (hostingContext, loggerConfiguration) => loggerConfiguration.ReadFrom.Configuration(hostingContext.Configuration));
+                        (hostingContext, loggerConfiguration) =>
+                        loggerConfiguration.ReadFrom.Configuration(hostingContext.Configuration));
                 });
-    }
-}
+
+var app = builder.Build();
+app.Run();
