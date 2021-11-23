@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace HostedServiceMediatRExample.Models
+﻿namespace HostedServiceMediatRExample.Models
 {
     public struct RequestId : IEquatable<RequestId>
     {

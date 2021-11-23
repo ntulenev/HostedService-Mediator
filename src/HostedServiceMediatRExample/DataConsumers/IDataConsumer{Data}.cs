@@ -1,7 +1,4 @@
-﻿using System.Collections.Generic;
-using System.Threading;
-
-namespace HostedServiceMediatRExample.DataConsumers
+﻿namespace HostedServiceMediatRExample.DataConsumers
 {
     public interface IDataConsumer<Data>
     {

@@ -1,17 +1,8 @@
-﻿using System;
-using System.Diagnostics;
-using System.Threading;
-using System.Threading.Tasks;
-
+﻿using System.Diagnostics;
 using HostedServiceMediatRExample.DataConsumers;
 using HostedServiceMediatRExample.Models;
 
 using MediatR;
-
-using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Hosting;
-using Microsoft.Extensions.Logging;
-
 
 namespace HostedServiceMediatRExample.Services
 {
