@@ -7,7 +7,7 @@
     <IsPackable>false</IsPackable>
 	
     <Nullable>enable</Nullable>
-
+    <ImplicitUsings>enable</ImplicitUsings>
     <Platform>x64</Platform>
     <Platforms>x64</Platforms>
 
