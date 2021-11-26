@@ -1,5 +1,5 @@
 # HostedService + Mediator example
-Example how to use [MediatR](https://github.com/jbogard/MediatR) from ASP.NET Core HostedService
+Example how to use [MediatR](https://github.com/jbogard/MediatR) from ASP.NET HostedService
 
 Using Mediator in HostedService to split consumed data between handlers. 
 Scope factory is used to set lifetime for handlers only per item processing scope. (Default behaviour is lifetime per hosted service lifetime).
