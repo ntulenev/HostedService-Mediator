@@ -1,14 +1,13 @@
 ﻿using MediatR;
 
-namespace HostedServiceMediatRExample.Models
-{
-    public abstract record Request : INotification
-    {
-        public RequestId Id { get; }
+namespace HostedServiceMediatRExample.Models;
 
-        public Request(RequestId id)
-        {
-            Id = id;
-        }
+public abstract record Request : INotification
+{
+    public RequestId Id { get; }
+
+    public Request(RequestId id)
+    {
+        Id = id;
     }
 }

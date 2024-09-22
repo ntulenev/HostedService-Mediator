@@ -1,7 +1,6 @@
-﻿namespace HostedServiceMediatRExample.Models
+﻿namespace HostedServiceMediatRExample.Models;
+
+public enum RequestType
 {
-    public enum RequestType
-    {
-        RequestA, RequestB
-    }
+    RequestA, RequestB
 }
