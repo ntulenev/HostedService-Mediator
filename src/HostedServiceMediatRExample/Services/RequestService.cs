@@ -30,7 +30,7 @@ namespace HostedServiceMediatRExample.Services
             {
                 if (t.IsFaulted)
                 {
-                    _logger?.LogError("Encountered error.", t.Exception);
+                    _logger?.LogError(t.Exception,"Encountered error.");
 
                     _logger?.LogInformation("Stopping the application.");
 
