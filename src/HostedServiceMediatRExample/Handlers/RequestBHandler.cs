@@ -16,7 +16,6 @@ public class RequestBHandler : INotificationHandler<RequestB>, IDisposable
         ThrowIfDisposed();
         await Task.Delay(100, cancellationToken).ConfigureAwait(false);
         _logger?.LogInformation(">>> Request B Handled - {@notification}", notification);
-
     }
 
     public void Dispose()
@@ -29,10 +28,7 @@ public class RequestBHandler : INotificationHandler<RequestB>, IDisposable
     }
     private void ThrowIfDisposed()
     {
-        if (_isDisposed)
-        {
-            throw new ObjectDisposedException(GetType().FullName);
-        }
+        ObjectDisposedException.ThrowIf(_isDisposed, this);
     }
 
     private bool _isDisposed;

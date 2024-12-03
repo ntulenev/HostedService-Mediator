@@ -29,10 +29,7 @@ public class RequestAHandler : INotificationHandler<RequestA>, IDisposable
     }
     private void ThrowIfDisposed()
     {
-        if (_isDisposed)
-        {
-            throw new ObjectDisposedException(GetType().FullName);
-        }
+        ObjectDisposedException.ThrowIf(_isDisposed, this);
     }
 
     private bool _isDisposed;
