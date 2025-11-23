@@ -14,14 +14,15 @@ public class RequestService : IHostedService
                           IHostApplicationLifetime hostApplicationLifetime,
                           IServiceScopeFactory scopeFactory)
     {
+        ArgumentNullException.ThrowIfNull(consumer);
+        ArgumentNullException.ThrowIfNull(hostApplicationLifetime);
+        ArgumentNullException.ThrowIfNull(scopeFactory);
+
         _logger = logger;
 
-        _consumer = consumer ?? throw new ArgumentNullException(nameof(consumer));
-
-        _hostApplicationLifetime = hostApplicationLifetime ?? throw new ArgumentNullException(nameof(hostApplicationLifetime));
-
-        _scopeFactory = scopeFactory ?? throw new ArgumentNullException(nameof(scopeFactory));
-
+        _consumer = consumer;
+        _hostApplicationLifetime = hostApplicationLifetime;
+        _scopeFactory = scopeFactory;
     }
 
     public Task StartAsync(CancellationToken cancellationToken)
