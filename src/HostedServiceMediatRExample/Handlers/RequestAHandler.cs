@@ -1,4 +1,4 @@
-﻿using HostedServiceMediatRExample.Models;
+using HostedServiceMediatRExample.Models;
 
 using MediatR;
 
@@ -9,7 +9,10 @@ namespace HostedServiceMediatRExample.Handlers;
 /// </summary>
 public class RequestAHandler : INotificationHandler<RequestA>, IDisposable
 {
-    public RequestAHandler(ILogger<RequestAHandler>? logger) => _logger = logger;
+    public RequestAHandler(ILogger<RequestAHandler>? logger)
+    {
+        _logger = logger;
+    }
 
     public async Task Handle(RequestA notification, CancellationToken cancellationToken)
     {
@@ -19,7 +22,9 @@ public class RequestAHandler : INotificationHandler<RequestA>, IDisposable
 
     }
 
+#pragma warning disable CA1816 // Dispose methods should call SuppressFinalize
     public void Dispose()
+#pragma warning restore CA1816 // Dispose methods should call SuppressFinalize
     {
         if (!_isDisposed)
         {
@@ -27,10 +32,7 @@ public class RequestAHandler : INotificationHandler<RequestA>, IDisposable
             _logger?.LogInformation("Dispose handler A");
         }
     }
-    private void ThrowIfDisposed()
-    {
-        ObjectDisposedException.ThrowIf(_isDisposed, this);
-    }
+    private void ThrowIfDisposed() => ObjectDisposedException.ThrowIf(_isDisposed, this);
 
     private bool _isDisposed;
     private readonly ILogger<RequestAHandler>? _logger;

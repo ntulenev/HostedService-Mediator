@@ -1,4 +1,4 @@
-﻿using System.Runtime.CompilerServices;
+using System.Runtime.CompilerServices;
 
 using HostedServiceMediatRExample.Models;
 
@@ -10,12 +10,15 @@ public class FakeRequestConsumer : IDataConsumer<Request>
     {
         Random rnd = new();
         long id = 0;
-        while (!ct.IsCancellationRequested)
+
+        while (true)
         {
+            ct.ThrowIfCancellationRequested();
+
             await Task.Delay(1_000, ct).ConfigureAwait(false);
 
             var enumItem = (RequestType)rnd.Next(0, 2);
-            if (!Enum.IsDefined(typeof(RequestType), enumItem))
+            if (!Enum.IsDefined(enumItem))
             {
                 throw new InvalidOperationException($"Invalid request type {enumItem}");
             }
@@ -26,6 +29,7 @@ public class FakeRequestConsumer : IDataConsumer<Request>
                 RequestType.RequestB => new RequestB(new RequestId(++id)),
                 _ => throw new InvalidOperationException("Unknown model type"),
             };
+
             yield return model;
         }
     }

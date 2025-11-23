@@ -1,6 +1,6 @@
-﻿namespace HostedServiceMediatRExample.DataConsumers;
+namespace HostedServiceMediatRExample.DataConsumers;
 
-public interface IDataConsumer<Data>
+public interface IDataConsumer<TData>
 {
-    public IAsyncEnumerable<Data> GetDataAsync(CancellationToken ct = default);
+    IAsyncEnumerable<TData> GetDataAsync(CancellationToken ct = default);
 }

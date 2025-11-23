@@ -1,4 +1,5 @@
-﻿using System.Diagnostics;
+using System.Diagnostics;
+
 using HostedServiceMediatRExample.DataConsumers;
 using HostedServiceMediatRExample.Models;
 
@@ -25,12 +26,12 @@ public class RequestService : IHostedService
 
     public Task StartAsync(CancellationToken cancellationToken)
     {
-        workTask = ProcessDataAsync(_hostApplicationLifetime.ApplicationStopping);
-        _ = workTask.ContinueWith(t =>
+        _workTask = ProcessDataAsync(_hostApplicationLifetime.ApplicationStopping);
+        _ = _workTask.ContinueWith(t =>
         {
             if (t.IsFaulted)
             {
-                _logger?.LogError(t.Exception,"Encountered error.");
+                _logger?.LogError(t.Exception, "Encountered error.");
 
                 _logger?.LogInformation("Stopping the application.");
 
@@ -45,8 +46,8 @@ public class RequestService : IHostedService
     {
         try
         {
-            Debug.Assert(workTask != null);
-            await workTask.ConfigureAwait(false);
+            Debug.Assert(_workTask != null);
+            await _workTask.ConfigureAwait(false);
         }
         catch (OperationCanceledException)
         {
@@ -59,7 +60,7 @@ public class RequestService : IHostedService
     {
         try
         {
-            await foreach (var request in _consumer.GetDataAsync().WithCancellation(ct).ConfigureAwait(false))
+            await foreach (var request in _consumer.GetDataAsync(ct).WithCancellation(ct).ConfigureAwait(false))
             {
                 Debug.Assert(request != null);
 
@@ -77,12 +78,12 @@ public class RequestService : IHostedService
         }
         catch (Exception ex)
         {
-            _logger?.LogError("Error on data consuming... {ex}", ex);
+            _logger?.LogError(ex, "Error on data consuming...");
             _hostApplicationLifetime.StopApplication();
         }
     }
 
-    private Task? workTask;
+    private Task? _workTask;
     private readonly ILogger<RequestService>? _logger;
     private readonly IDataConsumer<Request> _consumer;
     private readonly IHostApplicationLifetime _hostApplicationLifetime;

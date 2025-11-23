@@ -1,9 +1,14 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 16
-VisualStudioVersion = 16.0.30523.141
+# Visual Studio Version 18
+VisualStudioVersion = 18.3.11218.70 d18.3
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HostedServiceMediatRExample", "HostedServiceMediatRExample\HostedServiceMediatRExample.csproj", "{625A7EC7-8E5E-4D55-9B5E-B0371C737A94}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{6ECC1802-004A-481C-B054-8362437E9E52}"
+	ProjectSection(SolutionItems) = preProject
+		HostedServiceMediatRExample\.editorconfig = HostedServiceMediatRExample\.editorconfig
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
