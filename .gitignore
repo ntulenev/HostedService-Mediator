@@ -1,3 +1,5 @@
 /src/HostedServiceMediatRExample/obj
 /src/HostedServiceMediatRExample/bin
 /src/.vs
+/src/HostedServiceMediatRExample/HostedServiceMediatRExample.csproj.user
+/src/HostedServiceMediatRExample/*.log
